@@ -36,3 +36,4 @@ runs:
     - name: Build HTML reports
       working-directory: ./inga-ui
       run: npm run build
+      shell: bash
