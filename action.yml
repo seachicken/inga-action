@@ -16,13 +16,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: seachicken/inga-action/java@java
+    - uses: seachicken/inga-action/java@main
       if: ${{ inputs.language }} == 'java'
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         github-token: ${{ inputs.github-token }}
-    - uses: seachicken/inga-action/typescript@java
+    - uses: seachicken/inga-action/typescript@main
       if: ${{ inputs.language }} == 'typescript'
       with:
         root-path: ${{ inputs.root-path }}
