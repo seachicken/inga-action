@@ -1,0 +1,16 @@
+name: 'Inga'
+description: 'Analysis for typescript'
+inputs:
+  root-path:
+    description: ''
+  exclude:
+    description: ''
+  github-token:
+    description: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.root-path }}
+    - ${{ inputs.exclude }}
+    - ${{ inputs.github-token }}

@@ -1,0 +1,30 @@
+name: 'Inga'
+description: 'Visualize code changes and impact on users'
+inputs:
+  language:
+    description: 'Languages to be analyzed.'
+    required: true
+  root-path:
+    description: 'Relative path of the project to be analyzed, so if you do not give this option, it defaults to the command execute path.'
+    default: '.'
+  exclude:
+    description: 'Filenames of glob pattern matching to exclude from analysis. (e.g. "**/*.test.(ts|tsx)")'
+    default: ''
+  github-token:
+    description: 'If GitHub token is set, send the analysis report to comments in pull requests. Analyze with diffs of base and head branch of pull requests.'
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - uses: seachicken/inga-action/java@java
+      if: ${{ inputs.language }} == 'java'
+      with:
+        root-path: ${{ inputs.root-path }}
+        exclude: ${{ inputs.exclude }}
+        github-token: ${{ inputs.github-token }}
+    - uses: seachicken/inga-action/typescript@java
+      if: ${{ inputs.language }} == 'typescript'
+      with:
+        root-path: ${{ inputs.root-path }}
+        exclude: ${{ inputs.exclude }}
+        github-token: ${{ inputs.github-token }}
