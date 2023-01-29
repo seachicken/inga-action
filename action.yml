@@ -28,3 +28,14 @@ runs:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         github-token: ${{ inputs.github-token }}
+    - name: Checkout inga-ui
+      uses: actions/checkout@v3
+      with:
+        repository: seachicken/inga-ui
+        path: inga-ui
+    - name: Build HTML reports
+      working-directory: ./inga-ui
+      run: |
+        npm ci
+        npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build
+      shell: bash
