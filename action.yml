@@ -12,7 +12,7 @@ inputs:
     default: ''
   github-token:
     description: 'If GitHub token is set, send the analysis report to comments in pull requests. Analyze with diffs of base and head branch of pull requests.'
-    default: ''
+    default: ${{ github.token }}
 runs:
   using: 'composite'
   steps:
