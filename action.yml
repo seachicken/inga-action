@@ -37,7 +37,5 @@ runs:
       working-directory: ./inga-ui
       run: |
         npm ci
-        ls -lsa ..
-        echo ${GITHUB_WORKSPACE}
         npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build
       shell: bash
