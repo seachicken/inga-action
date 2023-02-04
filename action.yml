@@ -1,4 +1,4 @@
-name: 'Inga'
+name: 'Inga Analysis'
 description: 'Visualize code changes and impact on users'
 inputs:
   language:
