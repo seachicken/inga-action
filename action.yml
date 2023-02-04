@@ -13,6 +13,9 @@ inputs:
   github-token:
     description: 'If GitHub token is set, send the analysis report to comments in pull requests. Analyze with diffs of base and head branch of pull requests.'
     default: ${{ github.token }}
+  report-base:
+    description: ''
+    default: '/'
 runs:
   using: 'composite'
   steps:
@@ -37,5 +40,5 @@ runs:
       working-directory: ./inga-ui
       run: |
         npm ci
-        npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build
+        npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build -- --base=${{ inputs.report-base }}
       shell: bash
