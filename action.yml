@@ -35,10 +35,11 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: seachicken/inga-ui
-        path: inga-ui
+        path: inga
     - name: Build HTML reports
-      working-directory: ./inga-ui
+      working-directory: ./inga
       run: |
+        ls -lsa
         npm ci
         npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build -- --base=${{ inputs.report-base }}
       shell: bash
