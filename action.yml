@@ -39,3 +39,6 @@ runs:
         npm ci
         npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build -- --base=${{ inputs.report-base }}
       shell: bash
+branding:
+  icon: 'layers'
+  color: 'green'
