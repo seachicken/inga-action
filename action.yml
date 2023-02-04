@@ -14,7 +14,7 @@ inputs:
     description: 'If GitHub token is set, send the analysis report to comments in pull requests. Analyze with diffs of base and head branch of pull requests.'
     default: ${{ github.token }}
   report-base:
-    description: ''
+    description: 'Set the base path for the HTML report. Set `<REPO>` if using GitHub Pages and the URL is `https://<USERNAME>.github.io/<REPO>/`.'
     default: '/'
 runs:
   using: 'composite'
