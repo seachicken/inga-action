@@ -37,7 +37,7 @@ runs:
       working-directory: ./inga
       run: |
         npm ci
-        npm_config_json="${GITHUB_WORKSPACE}/reports/report.json" npm run build -- --base=${{ inputs.report-base }}
+        npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
       shell: bash
 branding:
   icon: 'layers'
