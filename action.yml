@@ -21,23 +21,25 @@ runs:
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        github-token: ${{ github.token }}
     - uses: seachicken/inga-action/typescript@main
       if: ${{ inputs.language }} == 'typescript'
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        github-token: ${{ github.token }}
     - name: Checkout inga-ui
       uses: actions/checkout@v3
       with:
         repository: seachicken/inga-ui
         path: inga
+    - name: Install dependencies
+      working-directory: ./inga
+      run: npm ci
+    - name: Report to PR comments
+      working-directory: ./inga
+      run: npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }}
     - name: Build HTML reports
       working-directory: ./inga
-      run: |
-        npm ci
-        npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
+      run: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
       shell: bash
 branding:
   icon: 'layers'

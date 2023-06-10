@@ -13,4 +13,3 @@ runs:
   args:
     - ${{ inputs.root-path }}
     - ${{ inputs.exclude }}
-    - ${{ inputs.github-token }}
