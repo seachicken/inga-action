@@ -34,9 +34,11 @@ runs:
     - name: Install dependencies
       working-directory: ./inga
       run: npm ci
+      shell: bash
     - name: Report to PR comments
       working-directory: ./inga
       run: npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }}
+      shell: bash
     - name: Build HTML reports
       working-directory: ./inga
       run: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
