@@ -43,8 +43,6 @@ runs:
       shell: bash
     - name: Report to PR comments
       working-directory: ./inga
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
       run: |
         BODY=$(npm run --silent print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }})
         gh pr comment ${{ github.event.pull_request.html_url }} --body "$BODY" --edit-last
