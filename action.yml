@@ -19,6 +19,7 @@ runs:
     - name: git diff
       id: git-diff
       run: git diff ${{ github.event.pull_request.base.sha }} --unified=0 --
+      shell: bash
     - uses: seachicken/inga-action/java@report
       if: ${{ inputs.language }} == 'java'
       with:
