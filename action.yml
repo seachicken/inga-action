@@ -44,7 +44,7 @@ runs:
     - name: Report to PR comments
       working-directory: ./inga
       run: |
-        COMMENT=npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }}
+        COMMENT=$(npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }})
         gh pr comment --body $COMMENT --edit-last
       shell: bash
     - name: Build HTML reports
