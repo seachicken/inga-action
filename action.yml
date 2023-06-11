@@ -43,7 +43,7 @@ runs:
       shell: bash
     - name: Report to PR comments
       working-directory: ./inga
-      run: gh pr comment --body $(npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }}) --edit-last
+      run: gh pr comment ${{ github.event.pull_request.html_url }} --body $(npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }}) --edit-last
       shell: bash
     - name: Build HTML reports
       working-directory: ./inga
