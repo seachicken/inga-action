@@ -21,13 +21,13 @@ runs:
       run: git diff ${{ github.event.pull_request.base.sha }} --unified=0 --
       shell: bash
     - uses: seachicken/inga-action/java@report
-      if: ${{ inputs.language }} == 'java'
+      if: inputs.language == 'java'
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         diff: ${{ steps.git-diff.outputs.stdout }}
     - uses: seachicken/inga-action/typescript@report
-      if: ${{ inputs.language }} == 'typescript'
+      if: inputs.language == 'typescript'
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
