@@ -31,12 +31,12 @@ runs:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         diff: ${{ steps.diff.outputs.stdout }}
-    - uses: ./report/
+    - uses: seachicken/inga-action/report@report
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         command: send-pr
-    - uses: ./report/
+    - uses: seachicken/inga-action/report@report
       with:
         command: build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
 branding:
