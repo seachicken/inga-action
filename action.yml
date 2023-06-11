@@ -32,14 +32,14 @@ runs:
         exclude: ${{ inputs.exclude }}
         diff: ${{ steps.diff.outputs.stdout }}
     - name: Report to PR comments
-      uses: docker/seachicken/inga-ui:0.1.0-pre0
+      uses: seachicken/inga-ui@0.1.0-pre0
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: |
         PR_COMMENT=$(npm run --silent print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }})
         gh pr comment ${{ github.event.pull_request.html_url }} --body "$PR_COMMENT" --edit-last
     - name: Build HTML reports
-      uses: docker/seachicken/inga-ui:0.1.0-pre0
+      uses: seachicken/inga-ui@0.1.0-pre0
       run: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
 branding:
   icon: 'layers'
