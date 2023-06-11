@@ -46,12 +46,12 @@ runs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: |
-        COMMENT=$(npm run print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }})
+        COMMENT=$(node print-pr --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }})
         gh pr comment ${{ github.event.pull_request.html_url }} --body "$COMMENT" --edit-last
       shell: bash
     - name: Build HTML reports
       working-directory: ./inga
-      run: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
+      run: node build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
       shell: bash
 branding:
   icon: 'layers'
