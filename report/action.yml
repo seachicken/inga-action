@@ -1,0 +1,11 @@
+name: 'Inga report'
+description: 'Report to PR comments'
+inputs:
+  json-path:
+    description: 'report.json path'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.json-path }}
+
