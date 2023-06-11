@@ -18,14 +18,13 @@ runs:
   steps:
     - name: git diff
       id: diff
-      run: git diff ${{ github.event.pull_request.base.sha }} --unified=0 --
+      run: git diff ${{ github.event.pull_request.base.sha }} --unified=0 -- > inga_git_diff
       shell: bash
     - uses: seachicken/inga-action/java@report
       if: inputs.language == 'java'
       with:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        diff: ${{ steps.diff.outputs.stdout }}
     - uses: seachicken/inga-action/typescript@report
       if: inputs.language == 'typescript'
       with:

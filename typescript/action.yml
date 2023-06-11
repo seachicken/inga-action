@@ -5,12 +5,9 @@ inputs:
     description: ''
   exclude:
     description: ''
-  diff:
-    description: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.root-path }}
     - ${{ inputs.exclude }}
-    - ${{ inputs.diff }}
