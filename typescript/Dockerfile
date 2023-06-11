@@ -1,4 +1,4 @@
-FROM ghcr.io/seachicken/inga:latest-typescript
+FROM ghcr.io/seachicken/inga:0.7.2-pre0-typescript
 
 COPY entrypoint.sh /
 
