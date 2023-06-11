@@ -34,9 +34,11 @@ runs:
     - uses: ./report/
       env:
         GITHUB_TOKEN: ${{ github.token }}
-    - name: Build HTML reports
-      uses: seachicken/inga-ui@0.1.0-pre0
-      run: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
+      with:
+        command: send-pr
+    - uses: ./report/
+      with:
+        command: build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
 branding:
   icon: 'layers'
   color: 'green'

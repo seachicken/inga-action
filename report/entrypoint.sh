@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-send-pr $1
+$1
