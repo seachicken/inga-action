@@ -35,10 +35,10 @@ runs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        command: send-pr
+        command: npm run send-pr ${GITHUB_WORKSPACE}/reports/report.json
     - uses: seachicken/inga-action/report@report
       with:
-        command: build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
+        command: npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
 branding:
   icon: 'layers'
   color: 'green'
