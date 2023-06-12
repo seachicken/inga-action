@@ -1,5 +1,7 @@
 FROM ghcr.io/seachicken/inga-ui:0.1.0-pre1
 
-COPY entrypoint.sh /
+WORKDIR /inga-ui
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh .
+
+ENTRYPOINT ["./entrypoint.sh"]
