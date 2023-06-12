@@ -1,6 +1,8 @@
 #!/bin/sh -l
 
-ls -lsa
+ls -lsa /
+
+cd /inga-ui
 
 case $1 in
   "send-pr" ) npm run send-pr ;;
