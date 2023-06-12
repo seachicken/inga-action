@@ -4,4 +4,4 @@ WORKDIR /inga-ui
 
 COPY entrypoint.sh .
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
