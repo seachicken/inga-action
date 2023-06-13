@@ -34,6 +34,7 @@ runs:
     - name: debug
       run: |
         ls -lsa
+        pwd
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
       shell: bash

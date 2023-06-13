@@ -4,12 +4,8 @@ inputs:
   type:
     description: 'Visualize type'
     required: true
-  workspace-path:
-    description: 'Workspace path where Inga was run'
-    default: '.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.type }}
-    - ${{ inputs.workspace-path }}
