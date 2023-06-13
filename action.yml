@@ -33,6 +33,7 @@ runs:
         diff: ${{ steps.diff.outputs.stdout }}
     - name: debug
       run: |
+        ls -lsa
         echo ${{ github.workspace }}
         echo $GITHUB_WORKSPACE
       shell: bash
