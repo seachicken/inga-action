@@ -38,6 +38,8 @@ runs:
         type: pr-report
         workspace-path: ${GITHUB_WORKSPACE}
     - uses: seachicken/inga-action/report@report
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         type: html-report
 branding:
