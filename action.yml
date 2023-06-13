@@ -31,6 +31,11 @@ runs:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         diff: ${{ steps.diff.outputs.stdout }}
+    - name: debug
+      run: |
+        echo ${{ github.workspace }}
+        echo $GITHUB_WORKSPACE
+      shell: bash
     - uses: seachicken/inga-action/report@report
       env:
         GITHUB_TOKEN: ${{ github.token }}
