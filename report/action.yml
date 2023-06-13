@@ -2,14 +2,10 @@ name: 'Inga UI'
 description: 'View report'
 inputs:
   type:
-    description: 'Visualize type'
-    required: true
-  workspace-path:
-    description: 'Workspace path where Inga was run'
+    description: 'Report type'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.type }}
-    - ${{ inputs.workspace-path }}

@@ -31,25 +31,16 @@ runs:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
         diff: ${{ steps.diff.outputs.stdout }}
-    - name: debug
-      run: |
-        ls -lsa
-        pwd
-        echo ${{ github.workspace }}
-        echo $GITHUB_WORKSPACE
-      shell: bash
     - uses: seachicken/inga-action/report@report
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         type: pr-report
-        workspace-path: ${{ github.workspace }}
     - uses: seachicken/inga-action/report@report
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         type: html-report
-        workspace-path: ${{ github.workspace }}
 branding:
   icon: 'layers'
   color: 'green'
