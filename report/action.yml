@@ -1,10 +1,13 @@
-name: 'Inga report'
-description: 'Report to PR comments'
+name: 'Inga UI'
+description: 'View report'
 inputs:
-  command:
-    description: 'run command'
+  type:
+    description: 'Visualize type'
+  workspace-path:
+    description: 'Workspace path where Inga was run'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.command }}
+    - ${{ inputs.type }}
+    - ${{ inputs.workspace-path }}
