@@ -3,6 +3,7 @@ description: 'View report'
 inputs:
   type:
     description: 'Visualize type'
+    required: true
   workspace-path:
     description: 'Workspace path where Inga was run'
 runs:
