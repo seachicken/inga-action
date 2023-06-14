@@ -1,3 +1,3 @@
-#!/bin/sh -l
+#!/bin/bash -e
 
 cat reports/report.json | pr-report
