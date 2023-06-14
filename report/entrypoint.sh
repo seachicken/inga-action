@@ -1,3 +1,3 @@
-#!/bin/bash -e
+#!/bin/sh -l
 
-cat reports/report.json | eval pr-report
+cat reports/report.json | pr-report
