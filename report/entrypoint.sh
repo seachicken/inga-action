@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-cat reports/report.json | /inga-ui/entrypoint $1
+cat reports/report.json | /inga-ui/entrypoint.sh $1
