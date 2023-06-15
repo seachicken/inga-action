@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-cat reports/report.json | pr-report
+cat reports/report.json | inga-ui $1
