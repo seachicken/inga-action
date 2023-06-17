@@ -4,33 +4,30 @@ inputs:
   language:
     description: 'Languages to be analyzed. ("java" | "typescript")'
     required: true
+  base-commit:
+    description: 'Analyze the difference between the --base-commit and the checked-out commit. Set refname or SHA.'
+    required: true
   root-path:
     description: 'Relative path of the project to be analyzed, so if you do not give this option, it defaults to the command execute path.'
     default: '.'
   exclude:
     description: 'Filenames of glob pattern matching to exclude from analysis. (e.g. "**/*.test.(ts|tsx)")'
     default: ''
-  report-base:
-    description: 'Set the base path for the HTML report. Set `<REPO>` if using GitHub Pages and the URL is `https://<USERNAME>.github.io/<REPO>/`.'
-    default: '/'
 runs:
   using: 'composite'
   steps:
-    - name: git diff
-      id: diff
-      run: git diff ${{ github.event.pull_request.base.sha }} --unified=0 -- > inga_git_diff
-      shell: bash
     - uses: seachicken/inga-action/java@report
       if: inputs.language == 'java'
       with:
+        base-commit: ${{ github.event.pull_request.base.sha }}
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
     - uses: seachicken/inga-action/typescript@report
       if: inputs.language == 'typescript'
       with:
+        base-commit: ${{ github.event.pull_request.base.sha }}
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        diff: ${{ steps.diff.outputs.stdout }}
     - uses: seachicken/inga-action/report@report
       env:
         GITHUB_TOKEN: ${{ github.token }}
