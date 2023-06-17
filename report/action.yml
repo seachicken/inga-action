@@ -1,0 +1,11 @@
+name: 'Inga UI'
+description: 'View report'
+inputs:
+  type:
+    description: 'Report type'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.type }}

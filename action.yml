@@ -4,41 +4,40 @@ inputs:
   language:
     description: 'Languages to be analyzed. ("java" | "typescript")'
     required: true
+  base-commit:
+    description: 'Analyze the difference between the --base-commit and the checked-out commit. Set refname or SHA.'
+    required: true
   root-path:
     description: 'Relative path of the project to be analyzed, so if you do not give this option, it defaults to the command execute path.'
     default: '.'
   exclude:
     description: 'Filenames of glob pattern matching to exclude from analysis. (e.g. "**/*.test.(ts|tsx)")'
     default: ''
-  report-base:
-    description: 'Set the base path for the HTML report. Set `<REPO>` if using GitHub Pages and the URL is `https://<USERNAME>.github.io/<REPO>/`.'
-    default: '/'
 runs:
   using: 'composite'
   steps:
     - uses: seachicken/inga-action/java@main
-      if: ${{ inputs.language }} == 'java'
+      if: inputs.language == 'java'
       with:
+        base-commit: ${{ github.event.pull_request.base.sha }}
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        github-token: ${{ github.token }}
     - uses: seachicken/inga-action/typescript@main
-      if: ${{ inputs.language }} == 'typescript'
+      if: inputs.language == 'typescript'
       with:
+        base-commit: ${{ github.event.pull_request.base.sha }}
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-        github-token: ${{ github.token }}
-    - name: Checkout inga-ui
-      uses: actions/checkout@v3
+    - uses: seachicken/inga-action/report@main
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
-        repository: seachicken/inga-ui
-        path: inga
-    - name: Build HTML reports
-      working-directory: ./inga
-      run: |
-        npm ci
-        npm run build --ingapath=${GITHUB_WORKSPACE}/reports/report.json --ingaurl=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} --ingasha=${{ github.event.pull_request.head.sha }} -- --base=${{ inputs.report-base }}
-      shell: bash
+        type: pr-report
+    - uses: seachicken/inga-action/report@main
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        type: html-report
 branding:
   icon: 'layers'
   color: 'green'

@@ -1,4 +1,5 @@
-#!/bin/sh -l
+#!/bin/bash
 
 git config --global --add safe.directory $PWD
-inga --root-path $1 --exclude "$2" --github-token $3
+inga --base-commit $1 --root-path $2 --exclude "$3"
+

@@ -1,16 +1,16 @@
 name: 'Inga'
 description: 'Analysis for java'
 inputs:
+  base-commit:
+    description: ''
   root-path:
     description: ''
   exclude:
-    description: ''
-  github-token:
     description: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.base-commit }}
     - ${{ inputs.root-path }}
     - ${{ inputs.exclude }}
-    - ${{ inputs.github-token }}
