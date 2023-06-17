@@ -4,9 +4,6 @@ inputs:
   language:
     description: 'Languages to be analyzed. ("java" | "typescript")'
     required: true
-  base-commit:
-    description: 'Analyze the difference between the --base-commit and the checked-out commit. Set refname or SHA.'
-    required: true
   root-path:
     description: 'Relative path of the project to be analyzed, so if you do not give this option, it defaults to the command execute path.'
     default: '.'
