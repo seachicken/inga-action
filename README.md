@@ -9,7 +9,6 @@ GitHub Actions for [Inga](https://github.com/seachicken/inga).
 | `language` | required | Languages to be analyzed. ("java" or "typescript") |
 | `root-path` | optional | Relative path of the project to be analyzed, so if you do not give this option, it defaults to the command execute path. |
 | `exclude` | optional | Filenames of glob pattern matching to exclude from analysis. (e.g. "**/*.test.(ts\|tsx)") |
-| `report-base` | optional | Set the base path for the HTML report. Set `<REPO>` if using GitHub Pages and the URL is `https://<USERNAME>.github.io/<REPO>/`. |
 
 ## Example
 

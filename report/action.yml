@@ -4,8 +4,11 @@ inputs:
   type:
     description: 'Report type'
     required: true
+  report-base:
+    description: 'Base path for the HTML report'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.type }}
+    - ${{ inputs.report-base }}
