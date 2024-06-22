@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cat reports/report.json | inga-ui $1 $2
+cat .inga/report/report.json | inga-ui $1 $2
 
