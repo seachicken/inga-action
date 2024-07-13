@@ -1,4 +1,4 @@
-FROM ghcr.io/seachicken/inga:latest-java
+FROM ghcr.io/seachicken/inga:0.17.6-java
 
 COPY entrypoint.sh /
 
