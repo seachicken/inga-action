@@ -1,6 +1,6 @@
 FROM node:20-slim
 
-ARG INGA_UI_VERSION=0.4.6
+ARG INGA_UI_VERSION=0.4.8
 
 RUN apt-get update && \
   apt-get install -y git jq && \
