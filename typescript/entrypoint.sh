@@ -1,5 +1,3 @@
 #!/bin/bash
 
-git config --global --add safe.directory $PWD
-inga --base-commit $1 --root-path $2 --exclude "$3"
-
+inga --diff "$(cd $2 && git diff $1 --unified=0)" --root-path $2 --exclude "$3"
