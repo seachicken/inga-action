@@ -1,4 +1,4 @@
-FROM ghcr.io/seachicken/inga:0.21.6-typescript
+FROM ghcr.io/seachicken/inga:0.22.2-typescript
 
 RUN apt-get update && \
   apt-get install -y git && \
