@@ -1,6 +1,6 @@
 FROM node:20-slim
 
-ARG INGA_UI_VERSION=0.4.9
+ARG INGA_UI_VERSION=0.5.1
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
