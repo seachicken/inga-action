@@ -1,14 +1,5 @@
 name: 'Inga UI'
 description: 'View report'
-inputs:
-  type:
-    description: 'Report type'
-    required: true
-  report-base:
-    description: 'Base path for the HTML report'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.type }}
-    - ${{ inputs.report-base }}
+  using: 'node20'
+  main: 'dist/index.js'

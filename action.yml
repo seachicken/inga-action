@@ -25,12 +25,7 @@ runs:
         base-commit: ${{ github.event.pull_request.base.sha }}
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
-    - uses: seachicken/inga-action/report@main
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        type: html-report
-        report-base: /${{ github.event.repository.name }}/
+    - uses: seachicken/inga-action/report@inga-saas
 branding:
   icon: 'layers'
   color: 'green'
