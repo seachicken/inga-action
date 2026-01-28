@@ -10,6 +10,9 @@ inputs:
   exclude:
     description: 'Filenames of glob pattern matching to exclude from analysis. (e.g. "**/*.test.(ts|tsx)")'
     default: ''
+  inga-url:
+    description: 'Inga URL'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -27,7 +30,7 @@ runs:
         exclude: ${{ inputs.exclude }}
     - uses: seachicken/inga-action/report@inga-saas
       with:
-        url: ${{ secrets.INGA_URL }}
+        url: ${{ inputs.inga-url }}
 branding:
   icon: 'layers'
   color: 'green'
