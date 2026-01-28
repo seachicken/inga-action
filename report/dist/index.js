@@ -31522,7 +31522,15 @@ function requireGithub () {
 
 var githubExports = requireGithub();
 
+var libExports = requireLib();
+
 try {
+  const idToken = await coreExports.getIDToken();
+  const httpClient = new libExports.HttpClient("inga-action");
+  const res = await httpClient.postJson(coreExports.getInput('url'), null, {
+    Authorization: `Bearer ${idToken}`
+  });
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = coreExports.getInput("who-to-greet");
   coreExports.info(`Hello ${nameToGreet}!`);
