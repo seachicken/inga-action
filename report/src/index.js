@@ -1,7 +1,14 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import * as http from "@actions/http-client";
 
 try {
+  const idToken = await core.getIDToken();
+  const httpClient = new http.HttpClient("inga-action");
+  const res = await httpClient.postJson(core.getInput('url'), null, {
+    Authorization: `Bearer ${idToken}`
+  });
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput("who-to-greet");
   core.info(`Hello ${nameToGreet}!`);

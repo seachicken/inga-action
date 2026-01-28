@@ -26,6 +26,8 @@ runs:
         root-path: ${{ inputs.root-path }}
         exclude: ${{ inputs.exclude }}
     - uses: seachicken/inga-action/report@inga-saas
+      with:
+        url: ${{ secrets.INGA_URL }}
 branding:
   icon: 'layers'
   color: 'green'
