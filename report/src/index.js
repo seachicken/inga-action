@@ -8,6 +8,7 @@ try {
   const res = await httpClient.postJson(core.getInput('url'), null, {
     Authorization: `Bearer ${idToken}`
   });
+  console.log(`res: ${JSON.stringify(res)}`);
 
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput("who-to-greet");
