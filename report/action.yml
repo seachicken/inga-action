@@ -1,8 +1,8 @@
 name: 'Inga UI'
 description: 'View report'
 inputs:
-  url:
-    description: 'url'
+  host:
+    description: 'host'
     required: true
 runs:
   using: 'node20'

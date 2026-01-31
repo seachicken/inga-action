@@ -5,7 +5,7 @@ import * as http from "@actions/http-client";
 try {
   const idToken = await core.getIDToken();
   const httpClient = new http.HttpClient("inga-action");
-  const res = await httpClient.postJson(core.getInput('url'), null, {
+  const res = await httpClient.postJson(`${core.getInput('host')}/external/oauth2/token`, null, {
     Authorization: `Bearer ${idToken}`
   });
   console.log(`res: ${JSON.stringify(res)}`);

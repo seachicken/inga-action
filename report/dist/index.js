@@ -31527,7 +31527,7 @@ var libExports = requireLib();
 try {
   const idToken = await coreExports.getIDToken();
   const httpClient = new libExports.HttpClient("inga-action");
-  const res = await httpClient.postJson(coreExports.getInput('url'), null, {
+  const res = await httpClient.postJson(`${coreExports.getInput('host')}/external/oauth2/token`, null, {
     Authorization: `Bearer ${idToken}`
   });
   console.log(`res: ${JSON.stringify(res)}`);
