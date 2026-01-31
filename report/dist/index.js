@@ -31520,30 +31520,18 @@ function requireGithub () {
 	return github;
 }
 
-var githubExports = requireGithub();
+requireGithub();
 
 var libExports = requireLib();
 
 try {
   const idToken = await coreExports.getIDToken();
   const httpClient = new libExports.HttpClient("inga-action");
-  console.log(`url: ${coreExports.getInput('host')}/external/oauth2/token`);
+  coreExports.info(`url: ${coreExports.getInput('host')}/external/oauth2/token`);
   const res = await httpClient.postJson(`${coreExports.getInput('host')}/external/oauth2/token`, null, {
     Authorization: `Bearer ${idToken}`
   });
-  console.log(`res: ${JSON.stringify(res)}`);
-
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = coreExports.getInput("who-to-greet");
-  coreExports.info(`Hello ${nameToGreet}!`);
-
-  // Get the current time and set it as an output variable
-  const time = new Date().toTimeString();
-  coreExports.setOutput("time", time);
-
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(githubExports.context.payload, undefined, 2);
-  coreExports.info(`The event payload: ${payload}`);
+  coreExports.info(`res: ${JSON.stringify(res)}`);
 } catch (error) {
   coreExports.setFailed(error.message);
 }
