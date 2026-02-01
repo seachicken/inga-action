@@ -15,8 +15,8 @@ try {
     'Content-Type': 'application/octet-stream',
     'Content-Length': buf.length.toString()
   };
-  const reportRes = await httpClient.post(`${core.getInput('host')}/external/report`, buf, headers);
-  core.info(`res: ${JSON.stringify(tokenRes)}`);
+  const reportRes = await httpClient.post(`${core.getInput('host')}/external/report`, buf.toString(), headers);
+  core.info(`res: ${JSON.stringify(reportRes)}`);
 } catch (error) {
   core.setFailed(error.message);
 }

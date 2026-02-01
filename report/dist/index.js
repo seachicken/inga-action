@@ -31537,8 +31537,8 @@ try {
     'Content-Type': 'application/octet-stream',
     'Content-Length': buf.length.toString()
   };
-  const reportRes = await httpClient.post(`${coreExports.getInput('host')}/external/report`, buf, headers);
-  coreExports.info(`res: ${JSON.stringify(tokenRes)}`);
+  const reportRes = await httpClient.post(`${coreExports.getInput('host')}/external/report`, buf.toString(), headers);
+  coreExports.info(`res: ${JSON.stringify(reportRes)}`);
 } catch (error) {
   coreExports.setFailed(error.message);
 }
