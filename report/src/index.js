@@ -10,7 +10,7 @@ try {
   });
   core.info(`res: ${JSON.stringify(tokenRes)}`);
 
-  const buf = fs.readFileSync('report.json')
+  const buf = fs.readFileSync('.inga/report.json')
   const headers = {
     'Content-Type': 'application/octet-stream',
     'Content-Length': buf.length.toString()

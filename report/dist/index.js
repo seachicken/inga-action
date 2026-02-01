@@ -31532,7 +31532,7 @@ try {
   });
   coreExports.info(`res: ${JSON.stringify(tokenRes)}`);
 
-  const buf = require$$1.readFileSync('report.json');
+  const buf = require$$1.readFileSync('.inga/report.json');
   const headers = {
     'Content-Type': 'application/octet-stream',
     'Content-Length': buf.length.toString()
