@@ -31528,17 +31528,17 @@ var libExports = requireLib();
 try {
   const httpClient = new libExports.HttpClient("inga-action");
   const tokenRes = await httpClient.postJson(`${coreExports.getInput('host')}/external/oauth2/token`, null, {
-    Authorization: `Bearer ${await coreExports.getIDToken()}`
+    'Authorization': `Bearer ${await coreExports.getIDToken()}`
   });
   coreExports.info(`res: ${JSON.stringify(tokenRes)}`);
 
   const buf = require$$1.readFileSync('.inga/report.json');
-  const headers = {
+  const reportRes = await httpClient.post(`${coreExports.getInput('host')}/external/report`, buf.toString(), {
     'Content-Type': 'application/octet-stream',
-    'Content-Length': buf.length.toString()
-  };
-  const reportRes = await httpClient.post(`${coreExports.getInput('host')}/external/report`, buf.toString(), headers);
-  coreExports.info(`res: ${JSON.stringify(reportRes)}`);
+    'Content-Length': buf.length.toString(),
+    'Authorization': `Bearer ${tokenRes.result.access_token}`
+  });
+  coreExports.info(`res: ${reportRes.message.statusCode}`);
 } catch (error) {
   coreExports.setFailed(error.message);
 }
