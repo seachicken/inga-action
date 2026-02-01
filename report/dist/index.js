@@ -31525,13 +31525,19 @@ requireGithub();
 var libExports = requireLib();
 
 try {
-  const idToken = await coreExports.getIDToken();
   const httpClient = new libExports.HttpClient("inga-action");
-  coreExports.info(`url: ${coreExports.getInput('host')}/external/oauth2/token`);
-  const res = await httpClient.postJson(`${coreExports.getInput('host')}/external/oauth2/token`, null, {
-    Authorization: `Bearer ${idToken}`
+  const tokenRes = await httpClient.postJson(`${coreExports.getInput('host')}/external/oauth2/token`, null, {
+    Authorization: `Bearer ${await coreExports.getIDToken()}`
   });
-  coreExports.info(`res: ${JSON.stringify(res)}`);
+  coreExports.info(`res: ${JSON.stringify(tokenRes)}`);
+
+  const buf = fs.readFileSync('report.json');
+  const headers = {
+    'Content-Type': 'application/octet-stream',
+    'Content-Length': buf.length.toString()
+  };
+  const reportRes = await httpClient.post(`${coreExports.getInput('host')}/external/report`, buf, headers);
+  coreExports.info(`res: ${JSON.stringify(tokenRes)}`);
 } catch (error) {
   coreExports.setFailed(error.message);
 }
