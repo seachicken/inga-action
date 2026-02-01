@@ -1,6 +1,7 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as http from "@actions/http-client";
+import * as fs from "fs";
 
 try {
   const httpClient = new http.HttpClient("inga-action");
